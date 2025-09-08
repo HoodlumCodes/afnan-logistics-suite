@@ -71,11 +71,11 @@ const Footer = () => {
             <div className="text-primary-foreground/60 text-sm">
               © 2025 Afnan. All rights reserved.
             </div>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-primary-foreground/60 hover:text-secondary transition-colors">Privacy Policy</a>
+            {/* <div className="flex space-x-6 text-sm">
+              <a href="https://afnan.com/policies/privacy-policy" className="text-primary-foreground/60 hover:text-secondary transition-colors">Privacy Policy</a>
               <a href="#" className="text-primary-foreground/60 hover:text-secondary transition-colors">Terms of Service</a>
               <a href="#" className="text-primary-foreground/60 hover:text-secondary transition-colors">Support Center</a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

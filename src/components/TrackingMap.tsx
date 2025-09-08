@@ -4,7 +4,7 @@ interface TrackingMapProps {
   progress?: number; // 0 → 1
 }
 
-const TrackingMap = ({ progress = 0.05 }: TrackingMapProps) => {
+const TrackingMap = ({ progress = 0.8 }: TrackingMapProps) => {
   // Coordinates for Dubai and London (simplified positions on SVG canvas)
   const dubai = { x: 150, y: 300 };
   const london = { x: 650, y: 100 };
@@ -15,7 +15,7 @@ const TrackingMap = ({ progress = 0.05 }: TrackingMapProps) => {
 
   return (
     <div className="relative bg-card rounded-2xl shadow-xl border border-border overflow-hidden p-6">
-      <h4 className="text-lg font-semibold mb-4 text-primary">Route: Dubai → London</h4>
+      <h4 className="text-lg font-semibold mb-4 text-primary">Route: Dubai, UAE → Conway Gardens, UK</h4>
 
       <svg viewBox="0 0 800 400" className="w-full h-64">
         {/* Background */}
