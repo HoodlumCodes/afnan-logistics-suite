@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 interface TrackingMapProps {
   progress?: number; // 0 → 1
@@ -9,21 +9,17 @@ const TrackingMap = ({ progress = 0.3 }: TrackingMapProps) => {
   const dubai = { x: 150, y: 300 };
   const london = { x: 650, y: 100 };
 
-  // SVG path for the curved route
-  const pathData = `M${dubai.x},${dubai.y} Q400,50 ${london.x},${london.y}`;
-
-  // Create a dummy path element to measure length
   const pathRef = useRef<SVGPathElement | null>(null);
+  const [pos, setPos] = useState({ x: dubai.x, y: dubai.y });
 
-  // Find position at progress %
-  let x = dubai.x;
-  let y = dubai.y;
-  if (pathRef.current) {
-    const totalLength = pathRef.current.getTotalLength();
-    const point = pathRef.current.getPointAtLength(totalLength * progress);
-    x = point.x;
-    y = point.y;
-  }
+  // Update dot position once path is available
+  useEffect(() => {
+    if (pathRef.current) {
+      const totalLength = pathRef.current.getTotalLength();
+      const point = pathRef.current.getPointAtLength(totalLength * progress);
+      setPos({ x: point.x, y: point.y });
+    }
+  }, [progress]);
 
   return (
     <div className="relative bg-card rounded-2xl shadow-xl border border-border overflow-hidden p-6">
@@ -42,10 +38,10 @@ const TrackingMap = ({ progress = 0.3 }: TrackingMapProps) => {
           </linearGradient>
         </defs>
 
-        {/* Route line (curved) */}
+        {/* Route line */}
         <path
           ref={pathRef}
-          d={pathData}
+          d={`M${dubai.x},${dubai.y} Q400,50 ${london.x},${london.y}`}
           stroke="url(#routeGradient)"
           strokeWidth="3"
           fill="none"
@@ -59,35 +55,27 @@ const TrackingMap = ({ progress = 0.3 }: TrackingMapProps) => {
 
         {/* Dubai marker */}
         <circle cx={dubai.x} cy={dubai.y} r="8" fill="#7b4397" />
-        <text
-          x={dubai.x + 12}
-          y={dubai.y + 5}
-          className="text-xs font-medium fill-foreground"
-        >
+        <text x={dubai.x + 12} y={dubai.y + 5} className="text-xs font-medium fill-foreground">
           Dubai
         </text>
 
         {/* London marker */}
         <circle cx={london.x} cy={london.y} r="8" fill="#1f4037" />
-        <text
-          x={london.x + 12}
-          y={london.y + 5}
-          className="text-xs font-medium fill-foreground"
-        >
+        <text x={london.x + 12} y={london.y + 5} className="text-xs font-medium fill-foreground">
           London
         </text>
 
         {/* Tracking dot */}
         <motion.circle
-          cx={x}
-          cy={y}
+          cx={pos.x}
+          cy={pos.y}
           r="10"
           fill="#ff4b2b"
           initial={{ opacity: 0.4, scale: 0.8 }}
           animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.2, 0.9] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
-        <circle cx={x} cy={y} r="20" fill="rgba(255, 75, 43, 0.2)" />
+        <circle cx={pos.x} cy={pos.y} r="20" fill="rgba(255, 75, 43, 0.2)" />
       </svg>
     </div>
   );
