@@ -3,7 +3,7 @@ import { Search, Package, Truck, Plane, CheckCircle, MapPin } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import WorldMap from "@/components/WorldMap"; // 👈 import map
+import WorldMap from "@/components/TrackingMap";
 
 interface TrackingStatus {
   status: string;
@@ -22,17 +22,17 @@ const TrackingSection = () => {
 
   const mockTrackingData: { [key: string]: TrackingStatus[] } = {
     "AFN22385": [
-      { status: "Package Received", location: "Dubai, UAE", timestamp: "2024-01-08 14:30", description: "Your package has been received at our Dubai facility", icon: Package, completed: true },
-      { status: "In Transit", location: "Dubai → London", timestamp: "2024-01-08 18:45", description: "Package is on route to London via Emirates Cargo", icon: Plane, completed: true },
-      { status: "Customs Clearance", location: "London Heathrow, UK", timestamp: "2024-01-09 08:15", description: "Package cleared customs successfully", icon: CheckCircle, completed: true },
-      { status: "Out for Delivery", location: "London, UK", timestamp: "2024-01-09 12:30", description: "Package is out for delivery to final destination", icon: Truck, completed: false },
-      { status: "Delivered", location: "Central London, UK", timestamp: "Expected: 16:00", description: "Package will be delivered today", icon: CheckCircle, completed: false }
+      { status: "Package Received", location: "Dubai, UAE", timestamp: "Sept 8, 2025 10:03", description: "Your package has been received at our Dubai facility", icon: Package, completed: true },
+      { status: "In Transit", location: "Dubai → London", timestamp: "Sept 8, 2025 14:03", description: "Package is on route to London via Clipper Courier Services", icon: Plane, completed: true },
+      // { status: "Customs Clearance", location: "London Heathrow, UK", timestamp: "2024-01-09 08:15", description: "Package cleared customs successfully", icon: CheckCircle, completed: true },
+      // { status: "Out for Delivery", location: "London, UK", timestamp: "2024-01-09 12:30", description: "Package is out for delivery to final destination", icon: Truck, completed: false },
+      // { status: "Delivered", location: "Central London, UK", timestamp: "Expected: 16:00", description: "Package will be delivered today", icon: CheckCircle, completed: false }
     ],
-    "AFN67890": [
-      { status: "Package Received", location: "New York, USA", timestamp: "2024-01-07 09:00", description: "Package received at our New York hub", icon: Package, completed: true },
-      { status: "Processing", location: "New York, USA", timestamp: "2024-01-07 11:30", description: "Package is being processed for international shipping", icon: Package, completed: true },
-      { status: "In Transit", location: "New York → Tokyo", timestamp: "2024-01-07 20:15", description: "Package en route to Tokyo via air freight", icon: Plane, completed: false }
-    ]
+    // "AFN67890": [
+    //   { status: "Package Received", location: "New York, USA", timestamp: "2024-01-07 09:00", description: "Package received at our New York hub", icon: Package, completed: true },
+    //   { status: "Processing", location: "New York, USA", timestamp: "2024-01-07 11:30", description: "Package is being processed for international shipping", icon: Package, completed: true },
+    //   { status: "In Transit", location: "New York → Tokyo", timestamp: "2024-01-07 20:15", description: "Package en route to Tokyo via air freight", icon: Plane, completed: false }
+    // ]
   };
 
   const handleTrack = () => {
