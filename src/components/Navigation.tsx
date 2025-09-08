@@ -19,12 +19,12 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-sm tracking-wide font-medium hover:text-primary transition-colors duration-300 relative group">
+          {/* <div className="hidden md:flex items-center space-x-8">
+            <a href="https://afnan.com/" className="text-sm tracking-wide font-medium hover:text-primary transition-colors duration-300 relative group">
               HOME
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 accent-gradient group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="#" className="text-sm tracking-wide font-medium hover:text-primary transition-colors duration-300 relative group">
+            <a href="#TrackingSection" className="text-sm tracking-wide font-medium hover:text-primary transition-colors duration-300 relative group">
               TRACKING
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 accent-gradient group-hover:w-full transition-all duration-300"></span>
             </a>
@@ -40,10 +40,10 @@ const Navigation = () => {
               CONTACT
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 accent-gradient group-hover:w-full transition-all duration-300"></span>
             </a>
-          </div>
+          </div> */}
 
           {/* Action Buttons */}
-          <div className="flex items-center space-x-4">
+          {/* <div className="flex items-center space-x-4">
             <Button variant="ghost" size="sm" className="hidden md:flex">
               <Search className="h-4 w-4" />
             </Button>
@@ -53,7 +53,7 @@ const Navigation = () => {
             <Button variant="ghost" size="sm" className="md:hidden">
               <Menu className="h-5 w-5" />
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

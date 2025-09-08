@@ -3,6 +3,7 @@ import { Search, Package, Truck, Plane, CheckCircle, MapPin } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import WorldMap from "@/components/WorldMap"; // 👈 import map
 
 interface TrackingStatus {
   status: string;
@@ -17,9 +18,10 @@ const TrackingSection = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isTracking, setIsTracking] = useState(false);
   const [currentTracking, setCurrentTracking] = useState<TrackingStatus[] | null>(null);
+  const [activeRoute, setActiveRoute] = useState<number | null>(null); // 👈 new state for map
 
   const mockTrackingData: { [key: string]: TrackingStatus[] } = {
-    "AFN12345": [
+    "AFN22385": [
       { status: "Package Received", location: "Dubai, UAE", timestamp: "2024-01-08 14:30", description: "Your package has been received at our Dubai facility", icon: Package, completed: true },
       { status: "In Transit", location: "Dubai → London", timestamp: "2024-01-08 18:45", description: "Package is on route to London via Emirates Cargo", icon: Plane, completed: true },
       { status: "Customs Clearance", location: "London Heathrow, UK", timestamp: "2024-01-09 08:15", description: "Package cleared customs successfully", icon: CheckCircle, completed: true },
@@ -35,13 +37,22 @@ const TrackingSection = () => {
 
   const handleTrack = () => {
     if (!trackingNumber.trim()) return;
-    
+
     setIsTracking(true);
-    
-    // Simulate API call delay
+
     setTimeout(() => {
       const trackingData = mockTrackingData[trackingNumber.toUpperCase()];
       setCurrentTracking(trackingData || null);
+
+      // 👇 Assign active route for map
+      if (trackingNumber.toUpperCase() === "AFN22385") {
+        setActiveRoute(0); // Dubai → London
+      } else if (trackingNumber.toUpperCase() === "AFN67890") {
+        setActiveRoute(1); // New York → Tokyo
+      } else {
+        setActiveRoute(null);
+      }
+
       setIsTracking(false);
     }, 1500);
   };
@@ -65,7 +76,7 @@ const TrackingSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-8">
             <div className="relative flex-1">
               <Input
-                placeholder="Enter tracking number (e.g., AFN12345)"
+                placeholder="Enter tracking number"
                 value={trackingNumber}
                 onChange={(e) => setTrackingNumber(e.target.value)}
                 onKeyPress={handleKeyPress}
@@ -92,11 +103,14 @@ const TrackingSection = () => {
               )}
             </Button>
           </div>
-          
-          <p className="text-sm text-luxury-muted">
-            Try sample tracking numbers: <span className="font-mono text-primary cursor-pointer hover:underline" onClick={() => setTrackingNumber("AFN12345")}>AFN12345</span> or <span className="font-mono text-primary cursor-pointer hover:underline" onClick={() => setTrackingNumber("AFN67890")}>AFN67890</span>
-          </p>
         </div>
+
+        {/* Live Map */}
+        {activeRoute !== null && (
+          <div className="mb-12">
+            <WorldMap activeRoute={activeRoute} />
+          </div>
+        )}
 
         {/* Tracking Results */}
         {currentTracking && (
@@ -115,12 +129,9 @@ const TrackingSection = () => {
                   const Icon = step.icon;
                   return (
                     <div key={index} className="flex items-start gap-4 relative">
-                      {/* Timeline Line */}
                       {index < currentTracking.length - 1 && (
                         <div className="absolute left-6 top-12 w-px h-16 bg-border"></div>
                       )}
-                      
-                      {/* Icon */}
                       <div className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-full ${
                         step.completed 
                           ? 'luxury-gradient text-primary-foreground' 
@@ -128,8 +139,6 @@ const TrackingSection = () => {
                       }`}>
                         <Icon className="h-5 w-5" />
                       </div>
-                      
-                      {/* Content */}
                       <div className="flex-1 pb-6">
                         <div className="flex items-center justify-between mb-2">
                           <h4 className={`font-semibold ${step.completed ? 'text-foreground' : 'text-muted-foreground'}`}>

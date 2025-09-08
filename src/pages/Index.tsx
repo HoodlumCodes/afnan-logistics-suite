@@ -30,27 +30,31 @@ const Index = () => {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 text-center text-primary-foreground">
+        <div className="relative z-10 container mx-auto px-8 text-center text-primary-foreground">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fade-in">
-              Tracking Your World,
+              
               <br />
-              <span className="text-secondary">In Real Time</span>
+              <span className="text-secondary">
+                Tracking Your Package
+              <br />
+                In Real Time
+              </span>
             </h1>
             
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              Experience luxury-grade logistics with our sophisticated global network. 
+              Experience hybrid-grade logistics with our sophisticated global network. 
               Every shipment tracked with precision and delivered with excellence.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-slide-up" style={{ animationDelay: '0.6s' }}>
-              <Button size="lg" className="accent-gradient text-foreground font-semibold tracking-wide px-8 py-4 h-auto glow-shadow">
+              {/* <Button size="lg" className="accent-gradient text-foreground font-semibold tracking-wide px-8 py-4 h-auto glow-shadow">
                 START TRACKING
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button variant="outline" size="lg" className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-secondary hover:text-foreground hover:border-secondary transition-all duration-300 px-8 py-4 h-auto">
+              </Button> */}
+              {/* <Button variant="outline" size="lg" className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-secondary hover:text-foreground hover:border-secondary transition-all duration-300 px-8 py-4 h-auto">
                 LEARN MORE
-              </Button>
+              </Button> */}
             </div>
 
             {/* Feature Cards */}
@@ -59,7 +63,7 @@ const Index = () => {
                 <CardContent className="p-6 text-center">
                   <Shield className="h-12 w-12 text-secondary mx-auto mb-4" />
                   <h3 className="text-lg font-semibold mb-2">Secure Delivery</h3>
-                  <p className="text-sm opacity-80">End-to-end protection with premium insurance coverage</p>
+                  <p className="text-sm opacity-80">End-to-end protection with insurance coverage</p>
                 </CardContent>
               </Card>
               
