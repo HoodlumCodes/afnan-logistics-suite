@@ -24,7 +24,7 @@ const TrackingMap = ({ progress = 0.3 }: TrackingMapProps) => {
   return (
     <div className="relative bg-card rounded-2xl shadow-xl border border-border overflow-hidden p-6">
       <h4 className="text-lg font-semibold mb-4 text-primary">
-        Route: Dubai, UAE → London, UK
+        Route: Dubai, UAE → Grays, UK
       </h4>
 
       <svg viewBox="0 0 800 400" className="w-full h-64">

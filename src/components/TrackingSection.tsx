@@ -22,7 +22,7 @@ const TrackingSection = () => {
   const mockTrackingData: { [key: string]: TrackingStatus[] } = {
     "AFN22385": [
       { status: "Package Received", location: "Dubai, UAE", timestamp: "Sept 8, 2025 10:03", description: "Your package has been received at our Dubai facility", icon: Package, completed: true },
-      { status: "In Transit", location: "Dubai → London", timestamp: "Sept 8, 2025 14:03", description: "Package is on route to London via Clipper Courier Services", icon: Plane, completed: true },
+      { status: "In Transit", location: "Dubai → Grays, UK", timestamp: "Sept 8, 2025 14:03", description: "Package is on route to London via Clipper Courier Services", icon: Plane, completed: true },
     ],
   };
 
