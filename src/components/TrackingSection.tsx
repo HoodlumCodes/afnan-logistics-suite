@@ -3,7 +3,7 @@ import { Search, Package, Truck, Plane, CheckCircle, MapPin } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import WorldMap from "@/components/TrackingMap";
+import TrackingMap from "@/components/TrackingMap"; // 👈 use the new map
 
 interface TrackingStatus {
   status: string;
@@ -18,21 +18,12 @@ const TrackingSection = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
   const [isTracking, setIsTracking] = useState(false);
   const [currentTracking, setCurrentTracking] = useState<TrackingStatus[] | null>(null);
-  const [activeRoute, setActiveRoute] = useState<number | null>(null); // 👈 new state for map
 
   const mockTrackingData: { [key: string]: TrackingStatus[] } = {
     "AFN22385": [
       { status: "Package Received", location: "Dubai, UAE", timestamp: "Sept 8, 2025 10:03", description: "Your package has been received at our Dubai facility", icon: Package, completed: true },
       { status: "In Transit", location: "Dubai → London", timestamp: "Sept 8, 2025 14:03", description: "Package is on route to London via Clipper Courier Services", icon: Plane, completed: true },
-      // { status: "Customs Clearance", location: "London Heathrow, UK", timestamp: "2024-01-09 08:15", description: "Package cleared customs successfully", icon: CheckCircle, completed: true },
-      // { status: "Out for Delivery", location: "London, UK", timestamp: "2024-01-09 12:30", description: "Package is out for delivery to final destination", icon: Truck, completed: false },
-      // { status: "Delivered", location: "Central London, UK", timestamp: "Expected: 16:00", description: "Package will be delivered today", icon: CheckCircle, completed: false }
     ],
-    // "AFN67890": [
-    //   { status: "Package Received", location: "New York, USA", timestamp: "2024-01-07 09:00", description: "Package received at our New York hub", icon: Package, completed: true },
-    //   { status: "Processing", location: "New York, USA", timestamp: "2024-01-07 11:30", description: "Package is being processed for international shipping", icon: Package, completed: true },
-    //   { status: "In Transit", location: "New York → Tokyo", timestamp: "2024-01-07 20:15", description: "Package en route to Tokyo via air freight", icon: Plane, completed: false }
-    // ]
   };
 
   const handleTrack = () => {
@@ -44,21 +35,12 @@ const TrackingSection = () => {
       const trackingData = mockTrackingData[trackingNumber.toUpperCase()];
       setCurrentTracking(trackingData || null);
 
-      // 👇 Assign active route for map
-      if (trackingNumber.toUpperCase() === "AFN22385") {
-        setActiveRoute(0); // Dubai → London
-      } else if (trackingNumber.toUpperCase() === "AFN67890") {
-        setActiveRoute(1); // New York → Tokyo
-      } else {
-        setActiveRoute(null);
-      }
-
       setIsTracking(false);
     }, 1500);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleTrack();
     }
   };
@@ -106,9 +88,9 @@ const TrackingSection = () => {
         </div>
 
         {/* Live Map */}
-        {activeRoute !== null && (
+        {currentTracking && (
           <div className="mb-12">
-            <WorldMap activeRoute={activeRoute} />
+            <TrackingMap progress={0.05} /> {/* 👈 Dubai → London at 5% */}
           </div>
         )}
 
@@ -134,14 +116,14 @@ const TrackingSection = () => {
                       )}
                       <div className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-full ${
                         step.completed 
-                          ? 'luxury-gradient text-primary-foreground' 
-                          : 'bg-muted text-muted-foreground'
+                          ? "luxury-gradient text-primary-foreground" 
+                          : "bg-muted text-muted-foreground"
                       }`}>
                         <Icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1 pb-6">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className={`font-semibold ${step.completed ? 'text-foreground' : 'text-muted-foreground'}`}>
+                          <h4 className={`font-semibold ${step.completed ? "text-foreground" : "text-muted-foreground"}`}>
                             {step.status}
                           </h4>
                           <span className="text-sm text-luxury-muted">{step.timestamp}</span>

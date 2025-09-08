@@ -1,49 +1,76 @@
-import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 interface TrackingMapProps {
-  progress?: number; // 0 → start at Dubai, 1 → arrived in London
+  progress?: number; // 0 → 1
 }
 
 const TrackingMap = ({ progress = 0.05 }: TrackingMapProps) => {
-  const pathRef = useRef<SVGPathElement | null>(null);
-  const [trackerPos, setTrackerPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  // Coordinates for Dubai and London (simplified positions on SVG canvas)
+  const dubai = { x: 150, y: 300 };
+  const london = { x: 650, y: 100 };
 
-  useEffect(() => {
-    if (pathRef.current) {
-      const pathLength = pathRef.current.getTotalLength();
-      const point = pathRef.current.getPointAtLength(pathLength * progress);
-
-      setTrackerPos({ x: point.x, y: point.y });
-    }
-  }, [progress]);
+  // Linear interpolation for progress
+  const x = dubai.x + (london.x - dubai.x) * progress;
+  const y = dubai.y + (london.y - dubai.y) * progress;
 
   return (
-    <div className="relative w-full h-96 md:h-[500px] bg-black/20 rounded-2xl overflow-hidden backdrop-blur-sm">
-      <svg viewBox="0 0 100 60" className="w-full h-full opacity-80">
-        {/* World background (simplified) */}
-        <path
-          d="M15,20 L25,18 L35,22 L45,20 L50,18 L55,20 L65,18 L75,22 L85,20 L90,25 L85,30 L75,35 L65,38 L55,35 L45,38 L35,35 L25,38 L15,35 Z"
-          fill="rgba(255,255,255,0.05)"
-          stroke="rgba(255,255,255,0.2)"
-          strokeWidth="0.2"
-        />
+    <div className="relative bg-card rounded-2xl shadow-xl border border-border overflow-hidden p-6">
+      <h4 className="text-lg font-semibold mb-4 text-primary">Route: Dubai → London</h4>
 
-        {/* Dubai → London curved route */}
+      <svg viewBox="0 0 800 400" className="w-full h-64">
+        {/* Background */}
+        <rect width="800" height="400" fill="url(#bgGradient)" rx="12" />
+
+        {/* Background gradient */}
+        <defs>
+          <linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#f5f5f7" />
+            <stop offset="100%" stopColor="#e6e9f0" />
+          </linearGradient>
+        </defs>
+
+        {/* Route line (curved) */}
         <path
-          ref={pathRef}
-          d="M70,45 Q60,20 50,25" // 👈 Dubai (70,45) → London (50,25) with curve
-          stroke="gold"
-          strokeWidth="0.8"
+          d={`M${dubai.x},${dubai.y} Q400,50 ${london.x},${london.y}`}
+          stroke="url(#routeGradient)"
+          strokeWidth="3"
           fill="none"
+          strokeDasharray="6 6"
         />
 
-        {/* Tracker circle (blinking) */}
+        {/* Route gradient */}
+        <linearGradient id="routeGradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#b993d6" />
+          <stop offset="100%" stopColor="#8ca6db" />
+        </linearGradient>
+
+        {/* Dubai marker */}
+        <circle cx={dubai.x} cy={dubai.y} r="8" fill="#7b4397" />
+        <text x={dubai.x + 12} y={dubai.y + 5} className="text-xs font-medium fill-foreground">
+          Dubai
+        </text>
+
+        {/* London marker */}
+        <circle cx={london.x} cy={london.y} r="8" fill="#1f4037" />
+        <text x={london.x + 12} y={london.y + 5} className="text-xs font-medium fill-foreground">
+          London
+        </text>
+
+        {/* Tracking dot with blinking + glow */}
+        <motion.circle
+          cx={x}
+          cy={y}
+          r="10"
+          fill="#ff4b2b"
+          initial={{ opacity: 0.4, scale: 0.8 }}
+          animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.2, 0.9] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        />
         <circle
-          cx={trackerPos.x}
-          cy={trackerPos.y}
-          r="1.5"
-          fill="gold"
-          className="animate-pulse"
+          cx={x}
+          cy={y}
+          r="20"
+          fill="rgba(255, 75, 43, 0.2)"
         />
       </svg>
     </div>
