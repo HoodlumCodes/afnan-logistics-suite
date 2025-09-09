@@ -4,42 +4,19 @@ import { useRef, useEffect, useState } from "react";
 const TrackingMap = () => {
   const fixedProgress = 0.25; // always 25%
 
-<<<<<<< HEAD
-=======
-const TrackingMap = ({ progress = 0.25 }: TrackingMapProps) => {
->>>>>>> 7d09247548d780376b0c24ffea1d377a9fc2009d
   const dubai = { x: 150, y: 300 };
   const london = { x: 650, y: 100 };
 
   const pathRef = useRef<SVGPathElement | null>(null);
   const [pos, setPos] = useState({ x: dubai.x, y: dubai.y });
 
-<<<<<<< HEAD
   useEffect(() => {
     if (pathRef.current) {
       const totalLength = pathRef.current.getTotalLength();
-      const point = pathRef.current.getPointAtLength(
-        totalLength * fixedProgress
-      );
+      const point = pathRef.current.getPointAtLength(totalLength * fixedProgress);
       setPos({ x: point.x, y: point.y });
     }
   }, []);
-=======
-  // Update dot position when progress changes
-  useEffect(() => {
-    const updatePosition = () => {
-      if (pathRef.current) {
-        const totalLength = pathRef.current.getTotalLength();
-        const point = pathRef.current.getPointAtLength(totalLength * progress);
-        setPos({ x: point.x, y: point.y });
-      }
-    };
-
-    // Small delay to ensure SVG is fully rendered
-    const timer = setTimeout(updatePosition, 50);
-    return () => clearTimeout(timer);
-  }, [progress]);
->>>>>>> 7d09247548d780376b0c24ffea1d377a9fc2009d
 
   return (
     <div className="relative bg-card rounded-2xl shadow-xl border border-border overflow-hidden p-6">
@@ -92,21 +69,18 @@ const TrackingMap = ({ progress = 0.25 }: TrackingMapProps) => {
           Grays
         </text>
 
-        {/* Tracking dot - larger on mobile */}
+        {/* Blinking tracking dot */}
         <motion.circle
           cx={pos.x}
           cy={pos.y}
           r="14"
-<<<<<<< HEAD
-=======
-          className="sm:r-10"
->>>>>>> 7d09247548d780376b0c24ffea1d377a9fc2009d
           fill="#ff4b2b"
           initial={{ opacity: 0.4, scale: 0.8 }}
           animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.2, 0.9] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
-<<<<<<< HEAD
+
+        {/* Glow around the dot */}
         <circle cx={pos.x} cy={pos.y} r="28" fill="rgba(255, 75, 43, 0.2)" />
 
         {/* Label for 25% point */}
@@ -117,9 +91,6 @@ const TrackingMap = ({ progress = 0.25 }: TrackingMapProps) => {
         >
           Diyala, Iraq
         </text>
-=======
-        <circle cx={pos.x} cy={pos.y} r="28" className="sm:r-20" fill="rgba(255, 75, 43, 0.2)" />
->>>>>>> 7d09247548d780376b0c24ffea1d377a9fc2009d
       </svg>
     </div>
   );
