@@ -22,9 +22,8 @@ const TrackingSection = () => {
   const mockTrackingData: { [key: string]: TrackingStatus[] } = {
     "AFN22385": [
       { status: "Package Received", location: "Dubai, UAE", timestamp: "Sept 8, 2025 10:21", description: "Your package has been received at our Dubai facility", icon: Package, completed: true },
-      { status: "In Transit", location: "Dubai → Grays, UK", timestamp: "Sept 8, 2025 14:03", description: "Package is on route to Grays via Clipper Courier Services", icon: Truck, completed: true },
-      { status: "In Transit", location: "Dubai → Grays, UK", timestamp: "Sept 8, 2025 18:49", description: "Package is on route to Grays via Clipper Courier Services", icon: Truck, completed: true },
-      { status: "In Transit", location: "Diyala, Iraq", timestamp: "Sept 10, 2025 02:55", description: "Package has reached Diyala, Iraq on its route to Grays via Clipper Courier Services", icon: Truck, completed: true },
+      { status: "In Transit", location: "Dubai → Grays, UK", timestamp: "Sept 8, 2025 14:03", description: "Package is on route to Grays via Clipper Courier Services", icon: Plane, completed: true },
+      { status: "In Transit", location: "Dubai → Grays, UK", timestamp: "Sept 8, 2025 18:49", description: "Package is on route to Grays via Clipper Courier Services", icon: Plane, completed: true },
     ],
   };
 
@@ -92,7 +91,7 @@ const TrackingSection = () => {
         {/* Live Map */}
         {currentTracking && (
           <div className="mb-12">
-            <TrackingMap progress={0.25} /> {/* 👈 Dubai → London at 25% */}
+            <TrackingMap progress={0.05} /> {/* 👈 Dubai → London at 5% */}
           </div>
         )}
 
