@@ -92,7 +92,7 @@ const TrackingSection = () => {
         {/* Live Map */}
         {currentTracking && (
           <div className="mb-12">
-            <TrackingMap progress={0.05} /> {/* 👈 Dubai → London at 5% */}
+            <TrackingMap progress={0.25} /> {/* 👈 Dubai → London at 25% */}
           </div>
         )}
 
