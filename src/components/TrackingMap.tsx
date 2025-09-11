@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const TrackingMap = () => {
-  const fixedProgress = 0.46; // always 46%
+  const fixedProgress = 0.61; // always 61%
 
   const dubai = { x: 150, y: 300 };
   const london = { x: 650, y: 100 };
@@ -89,7 +89,7 @@ const TrackingMap = () => {
           y={pos.y + 6}
           className="text-xs font-medium fill-foreground"
         >
-          Turkey–Bulgaria Border
+          Serbia/Hungary Corridor
         </text>
       </svg>
     </div>
