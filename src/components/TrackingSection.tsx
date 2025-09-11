@@ -3,7 +3,7 @@ import { Search, Package, Truck, Plane, CheckCircle, MapPin } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import TrackingMap from "@/components/TrackingMap"; // 👈 use the new map
+import TrackingMap from "@/components/TrackingMap";
 
 interface TrackingStatus {
   status: string;
@@ -28,6 +28,7 @@ const TrackingSection = () => {
     { status: "In Transit", location: "Ankara, Turkey", timestamp: "Sept 10, 2025 09:42", description: "Package is moving through central Turkey toward the EU corridor", icon: Truck, completed: true},
     { status: "Border Crossing", location: "Turkey–Bulgaria Border", timestamp: "Sept 10, 2025 16:15", description: "Package is at the Turkish–Bulgarian border awaiting customs clearance", icon: Truck, completed: true},
     { status: "In Transit", location: "Serbia / Hungary Corridor", timestamp: "Sept 11, 2025 07:09", description: "Package has entered Central Europe and is transiting toward Romania", icon: Truck, completed: true},
+    { status: "Border Crossing", location: "Hungary-Austria Border", timestamp: "Sept 11, 2025 19:17", description: "Package is at the Hungary-Austria border awaiting customs clearance", icon: Truck, completed: false},
     // { status: "Customs Hold", location: "Romania–Bulgaria Border", timestamp: "Sept 11, 2025 15:50", description: "Package is being held at the Romania–Bulgaria border for paperwork checks and customs clearance", icon: Truck, completed: false},
   ],
 };
