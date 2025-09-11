@@ -28,8 +28,11 @@ const TrackingSection = () => {
     { status: "In Transit", location: "Ankara, Turkey", timestamp: "Sept 10, 2025 09:42", description: "Package is moving through central Turkey toward the EU corridor", icon: Truck, completed: true},
     { status: "Border Crossing", location: "Turkey–Bulgaria Border", timestamp: "Sept 10, 2025 16:15", description: "Package is at the Turkish–Bulgarian border awaiting customs clearance", icon: Truck, completed: true},
     { status: "In Transit", location: "Serbia / Hungary Corridor", timestamp: "Sept 11, 2025 07:09", description: "Package has entered Central Europe and is transiting toward Romania", icon: Truck, completed: true},
-    { status: "Border Crossing", location: "Hungary-Austria Border", timestamp: "Sept 11, 2025 19:17", description: "Package is at the Hungary-Austria border awaiting customs clearance", icon: Truck, completed: false},
-    // { status: "Customs Hold", location: "Romania–Bulgaria Border", timestamp: "Sept 11, 2025 15:50", description: "Package is being held at the Romania–Bulgaria border for paperwork checks and customs clearance", icon: Truck, completed: false},
+    { status: "Border Crossing", location: "Hungary-Austria Border", timestamp: "Sept 11, 2025 19:17", description: "Package is at the Hungary-Austria border awaiting customs clearance", icon: Truck, completed: true},
+    { status: "In Transit", location: "Luxembourg", timestamp: "Sept 12, 2025 02:22", description: "Package has reached Luxembourg and is preparing for transfer toward Belgium.", icon: Truck, completed: true},
+
+    // { status: "In Transit", location: "Luxembourg → Belgium", timestamp: "Sept 12, 2025 09:50", description: "Package has departed Luxembourg and is currently in transit to Belgium.", icon: Truck, completed: true},
+    // { status: "Border Clearance", location: "Belgium–France–UK Border", timestamp: "Sept 12, 2025 17:19", description: "Package is held at the Belgium, France, and UK border for customs clearance, insurance verification, and final paperwork.", icon: Truck, completed: false},
   ],
 };
 
