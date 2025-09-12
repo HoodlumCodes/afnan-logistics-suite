@@ -31,6 +31,7 @@ const TrackingSection = () => {
     { status: "Border Crossing", location: "Hungary-Austria Border", timestamp: "Sept 11, 2025 19:17", description: "Package is at the Hungary-Austria border awaiting customs clearance", icon: Truck, completed: true},
     { status: "In Transit", location: "Luxembourg", timestamp: "Sept 12, 2025 02:22", description: "Package has reached Luxembourg and is preparing for transfer toward Belgium.", icon: Truck, completed: true},
     { status: "In Transit", location: "Luxembourg → Belgium", timestamp: "Sept 12, 2025 09:50", description: "Package has departed Luxembourg and is currently in transit to Belgium.", icon: Truck, completed: true},
+    { status: "In Transit", location: "Bruxelles, Belgium", timestamp: "Sept 12, 2025 13:41", description: "ackage is currently in Bruxelles, Belgium and is in transit to the Belgium–France–UK border.", icon: Truck, completed: true},
 
     // { status: "Border Clearance", location: "Belgium–France–UK Border", timestamp: "Sept 12, 2025 17:19", description: "Package is held at the Belgium, France, and UK border for customs clearance, insurance verification, and final paperwork.", icon: Truck, completed: false},
   ],
