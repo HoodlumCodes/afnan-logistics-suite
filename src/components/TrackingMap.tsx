@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const TrackingMap = () => {
-  const fixedProgress = 0.90; // always 90%
+  const fixedProgress = 0.91; // always 90%
 
   const dubai = { x: 150, y: 300 };
   const london = { x: 650, y: 100 };
